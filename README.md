@@ -18,11 +18,5 @@ SPERC es una plataforma diseñada para facilitar la organización y promoción d
 
 - Comentarios y Calificaciones: Después de cada evento, los asistentes tienen la oportunidad de dejar comentarios y calificaciones, lo que ayuda a otros usuarios a tomar decisiones informadas sobre qué eventos les interesan.
 
-## Instalación
+## TRELLO
 
-Para poner en marcha SPERC en tu entorno local, sigue estos pasos:
-
-1. Clona este repositorio en tu máquina local:
-
-```bash
-git clone https://github.com/tu-usuario/sistema-publicacion-eventos.git

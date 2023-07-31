@@ -40,3 +40,13 @@ La funcionalidad principal del sistema incluye:
 - Publicación de eventos: Los usuarios tendrán la capacidad de agregar información detallada sobre los eventos que deseen compartir, incluyendo datos como título, descripción, fechas, ubicación, categoría, y otros campos relevantes.
 - Búsqueda de eventos: Los usuarios podrán realizar búsquedas precisas utilizando filtros de categoría, fecha y ubicación para encontrar eventos de su interés de manera rápida y eficiente.
 
+## RESTRICCIONES
+El desarrollo del sistema de Publicación de Eventos Relacionados a Computación se encuentra sujeto a las siguientes restricciones:
+- Lenguaje de programación: El sistema será desarrollado utilizando el lenguaje de programación JavaScript.
+- Simplicidad: El sistema se diseñará y desarrollará siguiendo una aproximación de simplicidad, priorizando la facilidad de uso y la claridad en la interfaz de usuario.
+- Plataformas compatibles: El sistema se desarrollará para ser compatible con las plataformas web modernas y los navegadores más utilizados, como Google Chrome, Mozilla Firefox y Microsoft Edge.
+- Tecnologías adicionales: Además de JavaScript, se permitirá el uso de tecnologías relacionadas como HTML, CSS y frameworks de JavaScript para el desarrollo del sistema, siempre y cuando cumplan con los estándares y requisitos técnicos establecidos.
+- Integraciones externas: El sistema podrá integrarse con servicios externos y APIs para obtener información adicional sobre los eventos o para proporcionar funcionalidades adicionales, siempre y cuando se cumplan los requisitos técnicos y de seguridad correspondientes.
+- Escalabilidad: El sistema deberá ser diseñado de manera que pueda gestionar un crecimiento en la cantidad de eventos y usuarios sin comprometer el rendimiento y la estabilidad.
+- Seguridad: El sistema deberá implementar medidas de seguridad adecuadas para proteger la información de los eventos y los datos de los usuarios, evitando accesos no autorizados y asegurando la confidencialidad, integridad y disponibilidad de los datos.
+

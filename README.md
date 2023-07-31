@@ -19,11 +19,14 @@ SPERC es una plataforma diseñada para facilitar la organización y promoción d
 - Comentarios y Calificaciones: Después de cada evento, los asistentes tienen la oportunidad de dejar comentarios y calificaciones, lo que ayuda a otros usuarios a tomar decisiones informadas sobre qué eventos les interesan.
 
 ## TRELLO
-
+https://trello.com/invite/b/bBmltJB0/ATTI1698520f44d31836dcdbc30b7399055b6AD9CAB3/tablero-kanban
 
 ## TECNOLOGIAS
-
-
+Las tecnologias usadas fueron:
+- Java Script
+- HTML
+- CSS
+- TRELLO
 
 ## PERSPECTIVA DEL PRODUCTO 
 La funcionalidad principal del sistema incluiye:

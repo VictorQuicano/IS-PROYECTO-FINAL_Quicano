@@ -26,7 +26,7 @@ SPERC es una plataforma diseñada para facilitar la organización y promoción d
 
 
 ## PERSPECTIVA DEL PRODUCTO 
-La funcionalidad principal del sistema incluirá:
+La funcionalidad principal del sistema incluiye:
 - Registro de usuarios: permitirá a los usuarios crear perfiles y acceder al sistema.
 - Publicación de eventos: los usuarios podrán agregar información sobre los eventos que deseen publicar, incluyendo detalles como título, descripción, fechas, ubicación, categoría, entre otros.
 - Búsqueda de eventos: los usuarios podrán buscar eventos utilizando filtros de categoría, fecha y ubicación.
@@ -35,7 +35,7 @@ La funcionalidad principal del sistema incluirá:
 
 
 ## FUNCIONALIDAD DEL PRODUCTO
-La funcionalidad principal del sistema incluirá:
+La funcionalidad principal del sistema incluye:
 - Registro de usuarios: Los usuarios podrán registrarse y acceder al sistema de forma segura y confiable.
 - Publicación de eventos: Los usuarios tendrán la capacidad de agregar información detallada sobre los eventos que deseen compartir, incluyendo datos como título, descripción, fechas, ubicación, categoría, y otros campos relevantes.
 - Búsqueda de eventos: Los usuarios podrán realizar búsquedas precisas utilizando filtros de categoría, fecha y ubicación para encontrar eventos de su interés de manera rápida y eficiente.

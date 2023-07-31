@@ -19,9 +19,13 @@ SPERC es una plataforma diseñada para facilitar la organización y promoción d
 - Comentarios y Calificaciones: Después de cada evento, los asistentes tienen la oportunidad de dejar comentarios y calificaciones, lo que ayuda a otros usuarios a tomar decisiones informadas sobre qué eventos les interesan.
 
 ## TRELLO
-##TECNOLOGIAS
 
-##Perspectiva del producto
+
+## TECNOLOGIAS
+
+
+
+## PERSPECTIVA DEL PRODUCTO 
 La funcionalidad principal del sistema incluirá:
 - Registro de usuarios: permitirá a los usuarios crear perfiles y acceder al sistema.
 - Publicación de eventos: los usuarios podrán agregar información sobre los eventos que deseen publicar, incluyendo detalles como título, descripción, fechas, ubicación, categoría, entre otros.
@@ -30,7 +34,7 @@ La funcionalidad principal del sistema incluirá:
 
 
 
-##Funcionalidad del producto
+## FUNCIONALIDAD DEL PRODUCTO
 La funcionalidad principal del sistema incluirá:
 - Registro de usuarios: Los usuarios podrán registrarse y acceder al sistema de forma segura y confiable.
 - Publicación de eventos: Los usuarios tendrán la capacidad de agregar información detallada sobre los eventos que deseen compartir, incluyendo datos como título, descripción, fechas, ubicación, categoría, y otros campos relevantes.

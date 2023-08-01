@@ -1,13 +1,24 @@
-//@ts-nocheck
-export async function load({ fetch }) {
-  try {
-    const res = await fetch(
-      "https://eventos-cs.pockethost.io/api/collections/eventos/records"
-    );
+import { serializeNonPOJOs } from "$lib/utils";
 
-    const eventos = await res.json();
-    return { eventos };
-  } catch (error) {
-    console.log(error);
-  }
+//@ts-nocheck
+export function load({ fetch, locals }) {
+  // const res = await fetch(
+  //   "https://eventos-cs.pockethost.io/api/collections/eventos/records"
+  // );
+
+  const getEventos = async () => {
+    try {
+      const res = serializeNonPOJOs(
+        await locals.pb.collection("eventos").getFullList({
+          sort: "-created",
+        })
+      );
+      console.log("res:", res);
+      return res;
+    } catch (err) {
+      console.log("Error: ", err);
+      return [];
+    }
+  };
+  return { eventos: getEventos() };
 }

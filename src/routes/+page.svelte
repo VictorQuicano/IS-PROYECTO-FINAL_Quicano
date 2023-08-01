@@ -7,11 +7,12 @@
 
   export let data;
   let search_text = "";
-  let eventos = data.eventos.items;
-  eventos?.filter(function (evento: IEvento) {
-    evento.titulo = evento.titulo.toLowerCase();
-    return evento.titulo === search_text;
-  });
+  let eventos = data.eventos;
+  console.log(eventos);
+  // eventos?.filter(function (evento: IEvento) {
+  //   evento.titulo = evento.titulo.toLowerCase();
+  //   return evento.titulo === search_text;
+  // });
 
   const searchBooks = () => {
     // @ts-ignore

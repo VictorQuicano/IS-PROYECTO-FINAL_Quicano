@@ -1,8 +1,9 @@
 //@ts-nocheck
 import PocketBase from "pocketbase";
+import { env } from "$env/dynamic/private";
 
 export async function handle({ event, resolve }) {
-  event.locals.pb = new PocketBase("https://eventos-cs.pockethost.io");
+  event.locals.pb = new PocketBase(env.API_URL);
 
   // load the store data from the request cookie string
   event.locals.pb.authStore.loadFromCookie(

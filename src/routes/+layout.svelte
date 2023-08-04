@@ -1,3 +1,8 @@
+<script>
+  export let data;
+  // console.log(data);
+</script>
+
 <head>
   <title>Eventos - CS</title>
 </head>
@@ -5,15 +10,16 @@
   <header>
     <h1>Sistema de Publicación de Eventos de Computación</h1>
     <div>
+      {#if !data.user}
+        <a href="/auth/login"> Login </a>
+        <a href="/auth/register"> Register </a>
+      {:else}
+        <form action="/auth/logout" method="POST">
+          <button style="color: red; font-size: 16px;">Logout</button>
+        </form>
+      {/if}
+
       <a href="/">Home</a>
-
-      <a href="/auth/login"> Login </a>
-
-      <a href="/auth/register"> Register </a>
-
-      <form action="/auth/logout" method="POST">
-        <button style="color: red; font-size: 16px;">Logout</button>
-      </form>
     </div>
     <div />
   </header>

@@ -1,6 +1,7 @@
 //@ts-nocheck
 import PocketBase from "pocketbase";
 import { env } from "$env/dynamic/private";
+import { serializeNonPOJOs } from "$lib/utils";
 
 export async function handle({ event, resolve }) {
   event.locals.pb = new PocketBase(env.API_URL);
@@ -14,14 +15,15 @@ export async function handle({ event, resolve }) {
     // get an up-to-date auth store state by verifying and refreshing the loaded auth model (if any)
     event.locals.pb.authStore.isValid &&
       (await event.locals.pb.collection("users").authRefresh());
+    console.log(event.locals.pb.authStore.model);
 
-    if (event.locals.pb.authStore.isValid) {
-      // if the auth store is valid, set the user object to the store's user record
-      event.locals.user = event.locals.pb.authStore.user;
-    }
+    event.locals.user = serializeNonPOJOs(
+      await event.locals.pb.authStore.model
+    );
   } catch (_) {
     // clear the auth store on failed refresh
     event.locals.pb.authStore.clear();
+    event.locals.user = undefined;
   }
 
   const response = await resolve(event);

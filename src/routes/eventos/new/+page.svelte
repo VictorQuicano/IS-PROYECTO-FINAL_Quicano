@@ -1,6 +1,9 @@
+<script>
+</script>
+
 <section>
   <h2>Publicar un Evento</h2>
-  <form id="event-form">
+  <form id="event-form" method="POST">
     <label for="event-title">Título del Evento:</label>
     <input type="text" id="event-title" required />
 

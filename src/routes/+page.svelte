@@ -9,7 +9,9 @@
   export let data;
   let search_text = "";
   let eventos: IEvento[] = data.eventos;
-  console.log(eventos);
+  // console.log(eventos);
+
+  //* Events filter
   // eventos?.filter(function (evento: IEvento) {
   //   evento.titulo = evento.titulo.toLowerCase();
   //   return evento.titulo === search_text;

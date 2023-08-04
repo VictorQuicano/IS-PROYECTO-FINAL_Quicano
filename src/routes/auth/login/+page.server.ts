@@ -4,11 +4,12 @@ export const actions = {
   login: async ({ request, locals }) => {
     const formData = await request.formData();
     const data = Object.fromEntries([...formData]);
-    console.log("username:", data.username);
+    // console.log("username:", data.username);
     try {
       const { token, record } = await locals.pb
         .collection("users")
         .authWithPassword(data.username, data.password);
+      // console.log("token:", token);
     } catch (err) {
       console.log("Error:", err);
       return {

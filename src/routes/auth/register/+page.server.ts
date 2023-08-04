@@ -5,6 +5,7 @@ import { error, redirect } from "@sveltejs/kit";
 export const actions = {
   //@ts-ignore
   register: async ({ locals, request }) => {
+    //TODO: Agregar validacion por zod los formularios
     // const { formData, errors } = await validateData(await request.formData(), registerUserSchema);
     // const { formData, errors } = await request.formData();
     const formData = Object.fromEntries([...(await request.formData())]);
@@ -29,6 +30,6 @@ export const actions = {
       throw error(500, "Something went wrong");
     }
 
-    throw redirect(303, "auth/login");
+    throw redirect(303, "login");
   },
 };

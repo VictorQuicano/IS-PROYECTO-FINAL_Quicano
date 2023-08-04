@@ -2,10 +2,6 @@ import { serializeNonPOJOs } from "$lib/utils";
 
 //@ts-nocheck
 export function load({ fetch, locals }) {
-  // const res = await fetch(
-  //   "https://eventos-cs.pockethost.io/api/collections/eventos/records"
-  // );
-
   const getEventos = async () => {
     try {
       const res = serializeNonPOJOs(
@@ -13,10 +9,10 @@ export function load({ fetch, locals }) {
           sort: "-created",
         })
       );
-      console.log("res:", res);
+      // console.log("res:", res);
       return res;
     } catch (err) {
-      console.log("Error: ", err);
+      // console.log("Error: ", err);
       return [];
     }
   };

@@ -52,4 +52,3 @@ El desarrollo del sistema de Publicación de Eventos Relacionados a Computación
 - Integraciones externas: El sistema podrá integrarse con servicios externos y APIs para obtener información adicional sobre los eventos o para proporcionar funcionalidades adicionales, siempre y cuando se cumplan los requisitos técnicos y de seguridad correspondientes.
 - Escalabilidad: El sistema deberá ser diseñado de manera que pueda gestionar un crecimiento en la cantidad de eventos y usuarios sin comprometer el rendimiento y la estabilidad.
 - Seguridad: El sistema deberá implementar medidas de seguridad adecuadas para proteger la información de los eventos y los datos de los usuarios, evitando accesos no autorizados y asegurando la confidencialidad, integridad y disponibilidad de los datos.
-

@@ -103,4 +103,20 @@
     padding: 0.75rem 1rem;
     cursor: pointer;
   }
+  .new-event {
+    display: block;
+    margin-top: 1rem;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 10px;
+    width: 100%;
+    text-align: center;
+  }
+  .new-event:hover {
+    background-color: #000;
+  }
 </style>

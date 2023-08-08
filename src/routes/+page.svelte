@@ -11,12 +11,6 @@
   let eventos: IEvento[] = data.eventos;
   // console.log(eventos);
 
-  //* Events filter
-  // eventos?.filter(function (evento: IEvento) {
-  //   evento.titulo = evento.titulo.toLowerCase();
-  //   return evento.titulo === search_text;
-  // });
-
   const searchBooks = () => {
     // @ts-ignore
     return (filteredEvents = eventos.filter((evento) => {
@@ -68,39 +62,72 @@
   h2 {
     border-bottom: 2px solid #333;
     padding-bottom: 0.5rem;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 1.5rem;
   }
 
   .event-card {
     display: block;
     text-decoration: none;
-    color: black;
-    border: 1px solid #333;
+    color: #333;
+    border: 1px solid #ccc;
     border-radius: 10px;
     padding: 10px;
+    margin-bottom: 1rem;
+    transition: background-color 0.3s ease;
   }
 
   .event-card:hover {
-    background-color: beige;
+    background-color: #f9f9f9;
   }
+
   form label,
   form input,
-  form textarea,
   form button {
     display: block;
     margin-bottom: 1rem;
     width: 100%;
   }
 
-  form input,
-  form textarea {
-    padding: 0.5rem;
+  form input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
   }
 
   form button {
     background-color: #333;
     color: #fff;
     border: none;
-    padding: 0.75rem 1rem;
+    padding: 12px;
     cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+
+  form button:hover {
+    background-color: #195c29;
+  }
+
+  .new-event {
+    display: inline-block;
+    background-color: #195c29;
+    color: #fff;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease;
+  }
+
+  .new-event:hover {
+    background-color: #226b34;
   }
 </style>

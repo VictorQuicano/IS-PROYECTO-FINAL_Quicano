@@ -3,15 +3,15 @@
 
 <section>
   <h2>Publicar un Evento</h2>
-  <form id="event-form" method="POST">
+  <form id="event-form" action="?/new" method="POST">
     <label for="event-title">Título del Evento:</label>
-    <input type="text" id="event-title" required />
-
-    <label for="event-date">Fecha del Evento:</label>
-    <input type="date" id="event-date" required />
+    <input type="text" id="event-title" name="titulo" required />
 
     <label for="event-description">Descripción:</label>
-    <textarea id="event-description" rows="4" required />
+    <textarea id="event-description" rows="4" name="descripcion" required />
+
+    <label for="event-date">Fecha del Evento:</label>
+    <input type="date" id="event-date" name="fecha" required />
 
     <button type="submit">Publicar Evento</button>
   </form>

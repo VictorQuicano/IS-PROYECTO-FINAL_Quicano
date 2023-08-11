@@ -1,6 +1,10 @@
 <script>
+  import { getURLImagen } from '$lib/utils';
   export let data;
   // console.log(data);
+  function inicialesUsuario(nombre, apellido) {
+  return nombre.substring(0, 1)+apellido.substring(0, 1); }
+
 </script>
 
 <head>
@@ -20,9 +24,20 @@
             <a id="loginBoton" href="/auth/login">Login</a>
             <a id="registroBoton" href="/auth/register">Register</a>
           {:else}
-            <form action="/auth/logout" method="POST">
-              <button>Logout</button>
-            </form>
+          <div id="infoUsuario">
+            <div>
+              <div id="saludo">
+                <p>Hola <b>{data.user.nombre}!</b></p>
+                <form action="/auth/logout" method="POST">
+                  <button>Logout</button>
+                </form>
+              </div>
+              
+            </div>
+            <img id="avatarUsuario" src={data.user?.avatar? getURLImagen(data.user.collectionId, data.user.id, data.user.avatar, '30x30')
+					: `https://via.placeholder.com/80/4506CB/FFFFFF/?text=${inicialesUsuario(data.user.nombre, data.user.apellidos)}`} alt="Imagen del Usuario" />
+          </div>
+            
           {/if}
         </nav>
       </div>
@@ -36,6 +51,10 @@
 
 <style>
   /* Estilos generales */
+  p{
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
   body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
@@ -119,10 +138,10 @@
   button {
     background-color: #cc0000;
     color: #fff;
-    padding: 12px 24px;
+    padding: 10px 10px;
     border: none;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     border-radius: 4px;
     letter-spacing: 1px;
@@ -139,6 +158,26 @@
     padding: 20px;
     font-size: 16px;
     line-height: 1.6;
+  }
+  #saludo{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+  #infoUsuario{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  #avatarUsuario{
+    padding-left: 10px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0px 2px 4px rgba(255, 0, 0, 0.1);
+    object-fit: cover;
   }
 </style>
 

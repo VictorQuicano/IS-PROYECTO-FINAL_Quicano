@@ -54,7 +54,7 @@ El propósito del proyecto es desarrollar una plataforma llamada SPERC (Sistema 
 
 ## Funcionalidades
 ### Diagrama de Casos de Uso:
-Incluir un diagrama que muestre las interacciones entre los actores y los casos de uso del sistema, como "Registrar Usuario", "Publicar Evento", "Buscar Evento", etc.
+![Diagrama](image_2023-08-11_105810727.png)
 
 ### Prototipo o GUI:
 Se proporciona un enlace al prototipo interactivo de la interfaz de usuario [aquí](https://eventos-cs.netlify.app)

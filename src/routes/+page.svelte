@@ -9,6 +9,7 @@
   }
 
   export let data;
+  let usuario = data.user;
   let mini_descripcion = "";
   function obtenerPrimeras20Palabras(texto) {
     var palabras = texto.split(' ');
@@ -58,9 +59,10 @@
         {/each}
       </div>
     </section>
-
+    {#if data.user!=null && data.user.tipoDeUsuario !== "Alumno"}
     <a href="/eventos/new" class="new-event">Crear Evento</a>
-    </div>
+    {/if}  
+  </div>
   </main>
 </body>
 

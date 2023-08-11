@@ -18,3 +18,4 @@ export function load({ fetch, locals }) {
   };
   return { eventos: getEventos() };
 }
+

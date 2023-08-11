@@ -77,14 +77,62 @@ Describir cómo se aplican prácticas de codificación limpia en el proyecto, co
 **Programación Orientada a Componentes:**
 El enfoque central del desarrollo se basa en la creación de componentes reutilizables y autónomos. Cada componente encapsula su funcionalidad y presenta una interfaz coherente.
 
+![Diagrama](docs/componentes.png)
+
+>Se aplica este estilo diviendo las responsabilidades del back y front - end en componentes como cabecera, eventos, autenticación, etc.
+
 **Separación de Preocupaciones:**
 Se sigue el principio de separación de preocupaciones para mantener el código organizado y comprensible. La lógica de presentación, la lógica de negocios y la interacción con la base de datos se mantienen en áreas distintas.
+```
+API_URL="https://eventos-cs.pockethost.io/"
+```
+>En nuestro caso, la bd se maneja a  través  de un API-URL y manejo de ORM's para solicitar datos
+```javascript
+export const load =({locals, params}) => {
+    const getEvent = async (eventoID) => {
+        try{
+            const evento = serializeNonPOJOs(await locals.pb.collection('eventos').getOne(eventoID));
+            return evento;
+        } catch (err) {
+            console.log("Error: ",err);
+            throw error(err.status, err.message);
+        }
+    };
+    return{
+        event: getEvent(params.eventId)
+    }
+}
+```
 
 **Mantenibilidad y Escalabilidad:**
 El código se estructura de manera modular para facilitar la mantenibilidad y escalabilidad del sistema. Los componentes se diseñan de forma que puedan extenderse o modificarse con relativa facilidad.
 
+
 **Uso de Nombres Descriptivos:**
 Las variables, funciones y clases se nombran de manera significativa y descriptiva, lo que permite a los desarrolladores entender rápidamente su propósito y funcionalidad.
+```javascript
+export const getURLImagen = (tablaID, registroId, nombreArchivo, tamano = '80x80') => {
+  return `https://eventos-cs.pockethost.io/api/files/${tablaID}/${registroId}/${nombreArchivo}?thumb=${tamano}`;
+};
+```
+>Por ejemplo,en esta funcion queda muy claro que esta sección de código es una función que extrae el url desde la api, a aprtir de los atributos como el id de la tabla, el id del dato solicitado y el el nombre del archivo
+
+**ADVERSITY PROGRAMMING STYLE**
+El tratar de maneejar errores,para evitar la caida del sistema.
+
+```javascript
+const formData = Object.fromEntries([...(await request.formData())]);
+    try {
+      await locals.pb
+        .collection("eventos")
+        .create(serialize({ ...formData, organizador: locals.user.id }));
+      console.log("formData:");
+    } catch (err) {
+      console.log("Error: ", err);
+      throw error(err.status, err.message);
+    }
+```
+> En caso se genere un evento y este ya existe o tiene algun error al pasarlo a la BD se muestra error al usuario, pero le permite continuar en el sistema'
 
 ## Principios SOLID
 ### Descripción:

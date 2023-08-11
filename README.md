@@ -153,16 +153,77 @@ export async function handle({ event, resolve }) {
 }
 ```
 ## Conceptos DDD (Domain-Driven Design)
-### Entidades, Objetos de Valor, [Servicios de Dominio]:
-Explicar cómo se identificaron y diseñaron las entidades y objetos de valor clave en el dominio del sistema. Si hay servicios de dominio, describir su propósito y función.
+### Modelos
+Los modelos son objetos que representan entidades en el dominio del problema. Por ejemplo, un modelo para una página de eventos de computación podría ser un evento. Un evento tendría propiedades como el nombre, la fecha, la hora y la ubicación del evento.
+```js
+// Este es el modelo `Event`.
+interface Event {
+  name: string;
+  date: Date;
+  time: Date;
+  location: string;
+}
+```
+### Repositorios
+Los repositorios son responsables del acceso a los datos. Un repositorio para una página de eventos de computación podría ser un repositorio de eventos. Un repositorio de eventos sería responsable de acceder a los eventos de la base de datos.
+```js
+// Este es el repositorio `EventRepository`.
+class EventRepository {
+  constructor(private readonly pocketBaseClient: PocketBaseClient) {}
 
-### Agregados y Módulos:
-Detallar cómo se definieron los agregados (grupos lógicos de entidades y objetos de valor) y cómo se organizaron en módulos en el sistema.
+  async fetchEvents() {
+    const events = await this.pocketBaseClient.query('events');
+    return events;
+  }
 
-### Fábricas y Repositorios:
-Describir cómo se utilizan las fábricas para crear objetos complejos y los repositorios para gestionar el acceso a la persistencia de datos.
+//CRUD
+}
+```
+### Servicios
+Los servicios son responsables de realizar operaciones en los datos. Un servicio para una página de eventos de computación podría ser un servicio de eventos. Un servicio de eventos sería responsable de crear, actualizar y eliminar eventos.
+```js
+// Este es el servicio `EventService`.
+class EventService {
+  constructor(private readonly eventRepository: EventRepository) {}
 
-## "Arquitectura en Capas"
+  async createEvent(event: Event) {
+    return await this.eventRepository.createEvent(event);
+  }
+
+  async updateEvent(event: Event) {
+    return await this.eventRepository.updateEvent(event);
+  }
+
+  async deleteEvent(eventId: number) {
+    return await this.eventRepository.deleteEvent(eventId);
+  }
+}
+```
+### Vistas
+Las vistas son responsables de mostrar los datos al usuario. Una vista para una página de eventos de computación podría ser una vista de lista de eventos. Una vista de lista de eventos sería responsable de mostrar una lista de eventos al usuario.
+```svelte
+ <div id = "contenedorC">
+    <section>
+      <h2>Eventos Próximos</h2>
+      <form id="search-form">
+        <label for="search-input">Buscar por nombre:</label>
+        <input type="text" bind:value={search_text} on:input={searchBooks} />
+        <button type="submit">Buscar</button>
+      </form>
+      <div id="event-list">
+        {#each eventos as evento}
+          <div id="eventoInvidual">
+                <h3>
+                  {evento.titulo}
+                  {//Datos de evento}
+                </h3>
+          </div>
+        {/each}
+      </div>
+    </section>
+```
+
+### "Arquitectura en Capas"
 El sistema sigue un enfoque de arquitectura en capas para garantizar la separación de preocupaciones y la modularidad. Las capas principales del sistema son:
 
 **Capa de Presentación:**

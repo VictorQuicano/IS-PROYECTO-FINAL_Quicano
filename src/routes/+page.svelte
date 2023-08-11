@@ -1,12 +1,20 @@
 <script lang="ts">
+  import { getURLImagen } from '$lib/utils';
   interface IEvento {
     id: string;
     titulo: string;
     descripcion: string;
     fecha: string;
+    miniatura: string;
   }
 
   export let data;
+  let mini_descripcion = "";
+  function obtenerPrimeras20Palabras(texto) {
+    var palabras = texto.split(' ');
+    return palabras.slice(0, 50).join(' ')+ " ...";
+  }
+
   let search_text = "";
   let eventos: IEvento[] = data.eventos;
   // console.log(eventos);
@@ -23,6 +31,7 @@
 
 <body>
   <main>
+    <div id = "contenedorC">
     <section>
       <h2>Eventos Próximos</h2>
       <form id="search-form">
@@ -32,19 +41,26 @@
       </form>
       <div id="event-list">
         {#each eventos as evento}
-          <a href={`/eventos/${evento.id}`} class="event-card">
-            <h3>
-              {evento.titulo}
-            </h3>
-            <p>
-              {evento.descripcion}
-            </p>
-          </a>
+          <div id="eventoInvidual">
+            <img id="miniatura" src={evento?.imagen? getURLImagen(evento.collectionId,evento.id,evento.imagen, '80x80'): `https://via.placeholder.com/80/4506CB/FFFFFF/?text=${evento.titulo}`} alt="Imagen del Evento" />
+          
+              <a href={`/eventos/${evento.id}`} class="event-card">
+                <h3>
+                  {evento.titulo}
+                </h3>
+                <p>
+                  {obtenerPrimeras20Palabras(evento.descripcion)}
+                </p>
+              </a>
+      
+          
+          </div>
         {/each}
       </div>
     </section>
 
     <a href="/eventos/new" class="new-event">Crear Evento</a>
+    </div>
   </main>
 </body>
 
@@ -73,15 +89,18 @@
     color: #333;
     border: 1px solid #ccc;
     border-radius: 10px;
-    padding: 10px;
+    padding: 10px 20px 10px 20px;
     margin-bottom: 1rem;
     transition: background-color 0.3s ease;
+    position: relative;
+    width: 75%;
+    text-align: justify;
   }
 
   .event-card:hover {
     background-color: #f9f9f9;
   }
-
+  
   form label,
   form input,
   form button {
@@ -145,5 +164,24 @@
   }
   .new-event:hover {
     background-color: #000;
+  }
+  #contenedorC{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 20% 1rem 20%;
+  }
+  #miniatura{
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+  }
+  #eventoInvidual{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
   }
 </style>

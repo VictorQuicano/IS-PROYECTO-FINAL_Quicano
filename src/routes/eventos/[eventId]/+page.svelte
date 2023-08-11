@@ -1,24 +1,6 @@
-<<<<<<< HEAD
-<script lang="ts">
-    export let data;
-</script>
-<div>
-    <h1>
-        {data.event.titulo}
-    </h1>
-    <h2>
-        {data.event.descripcion}
-    </h2>
-</div>
-=======
 <script>
-    let evento = {
-      id: 'X',
-      titulo: 'TITULO',
-      descripcion: 'DESCRIPCION DEL EVENTO',
-      fecha: 'FECHA'
-    };
-  
+    import { getURLImagen } from '$lib/utils';
+    export let data;
     let goBack = () => {
       window.history.back();
     };
@@ -27,12 +9,13 @@
   <main>
     <section class="event-details">
       <div class="event-image">
-        <img src="ruta-de-la-imagen.jpg" alt="Imagen del Evento" />
+        <img src={data.event?.imagen? getURLImagen(data.event.collectionId, data.event.id, data.event.imagen, '80x80')
+					: `https://via.placeholder.com/80/4506CB/FFFFFF/?text=${data.event.titulo}`} alt="Imagen del Evento" />
       </div>
       <div class="event-info">
-        <h2>{evento.titulo}</h2>
-        <p>{evento.descripcion}</p>
-        <p>Fecha del evento: {evento.fecha}</p>
+        <h2>{data.event.titulo}</h2>
+        <p style="text-align: justify;">{data.event.descripcion}</p>
+        <p>Fecha del evento: {data.event.fecha}</p>
       </div>
       <div class="Button">
         <h3></h3>
@@ -99,5 +82,3 @@
     }
   
   </style>
-  
->>>>>>> 83804b25200c1b95e47fdea2fd75b4cf07bcb43a

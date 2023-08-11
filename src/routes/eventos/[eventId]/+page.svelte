@@ -1,3 +1,16 @@
+<<<<<<< HEAD
+<script lang="ts">
+    export let data;
+</script>
+<div>
+    <h1>
+        {data.event.titulo}
+    </h1>
+    <h2>
+        {data.event.descripcion}
+    </h2>
+</div>
+=======
 <script>
     let evento = {
       id: 'X',
@@ -87,3 +100,4 @@
   
   </style>
   
+>>>>>>> 83804b25200c1b95e47fdea2fd75b4cf07bcb43a

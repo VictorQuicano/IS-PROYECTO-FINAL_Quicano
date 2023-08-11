@@ -9,6 +9,7 @@
   }
 
   export let data;
+
   let usuario = data.user;
   let mini_descripcion = "";
   function obtenerPrimeras20Palabras(texto) {

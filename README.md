@@ -1,6 +1,6 @@
 # Sistema de Publicación de Eventos Relacionados a Computación
 
-![Eventos CS](docs/eventos-cs.png)
+![Eventos CS](docs/image_2023-08-11_102553576.png)
 [Live demo](https://eventos-cs.netlify.app)
 
 ## Descripción
@@ -54,17 +54,17 @@ El propósito del proyecto es desarrollar una plataforma llamada SPERC (Sistema 
 
 ## Funcionalidades
 ### Diagrama de Casos de Uso:
-Incluir un diagrama que muestre las interacciones entre los actores y los casos de uso del sistema, como "Registrar Usuario", "Publicar Evento", "Buscar Evento", etc.
+![Diagrama](docs/image_2023-08-11_105810727.png)
 
 ### Prototipo o GUI:
 Se proporciona un enlace al prototipo interactivo de la interfaz de usuario [aquí](https://eventos-cs.netlify.app)
 
 ## Modelo de Dominio
 ### Diagrama de Clases:
-Presentar un diagrama que ilustre las clases y sus relaciones en el sistema, como "Evento", "Usuario", "Comentario", etc.
+![Diagrama](docs/image_2023-08-11_093645799.png)
 
 ### Diagrama de Módulos:
-Desglosar el sistema en módulos funcionales, mostrando cómo se organiza la arquitectura. Esto puede incluir módulos como "Gestión de Eventos", "Autenticación de Usuarios", etc.
+![Diagrama](docs/image_2023-08-11_093626090.png)
 
 ## Arquitectura y Patrones
 ### Diagrama de Componentes o Paquetes:
@@ -95,28 +95,135 @@ Explicar cómo se aplican los principios SOLID (Single Responsibility, Open/Clos
 La clase EventoService se encarga exclusivamente de la lógica relacionada con los eventos:
 ``` javascript
 Copy code
-class EventoService {
-  async crearEvento(evento) {
+export function load({ fetch, locals }) {
+  const getEventos = async () => {
     // Lógica para crear un nuevo evento
   }
 
-  async actualizarEvento(evento) {
+  const actualizarEvento = async (evento) => {
     // Lógica para actualizar un evento existente
   }
 }
 ```
+**Principio de abierto/cerrado (OCP)**
+La página debe ser extensible sin modificar su código existente. Esto se puede hacer utilizando interfaces y abstracciones. Por ejemplo, la página podría usar una interfaz EventRepository para acceder a los datos de eventos. Esto haría posible cambiar el repositorio de datos sin modificar el código de la página.
+```javascript
+interface IEvento {
+  id: string;
+  titulo: string;
+  descripcion: string;
+  fecha: string;
+  miniatura: string;
+}
+```
+**Principio de sustitución de Liskov (LSP)**
+Las clases derivadas deben poder usarse en lugar de las clases base sin provocar errores. Esto se puede hacer asegurando que las clases derivadas cumplan con los contratos de las clases base. 
+```javascript
+//hocks.server.ts
+export async function handle({ event, resolve }) {
+  event.locals.pb = new PocketBase(env.API_URL);
+  /////////////////////////////
+}
+```
+**Principio de separación de interfaces (ISP)**
+Una clase no debe verse obligada a implementar métodos que no utiliza. Esto hace que el código sea más fácil de entender y mantener. Por ejemplo, una clase Event no debería tener que implementar un método save si no necesita guardarse en la base de datos.
+```js
+//Crear evento
+export const load = ({ locals }) => {
+  if (!locals.pb.authStore.isValid) {
+    throw redirect(303, "/auth/login");
+  }
+};
 
+export const actions = {
+  new: async ({ request, locals }) => {
+    const formData = Object.fromEntries([...(await request.formData())]);
+    //Logica de crear nuevo evento
+  },
+};
+```
+
+**Principio de inversión de dependencia (DIP)**
+Los componentes de la página no deben depender de implementaciones específicas. En cambio, deben depender de abstracciones. Esto hace que la página sea más flexible y fácil de mantener.
+```js
+//Pocketbase sdk
+export async function handle({ event, resolve }) {
+  event.locals.pb = new PocketBase(env.API_URL);
+  /////
+}
+```
 ## Conceptos DDD (Domain-Driven Design)
-### Entidades, Objetos de Valor, [Servicios de Dominio]:
-Explicar cómo se identificaron y diseñaron las entidades y objetos de valor clave en el dominio del sistema. Si hay servicios de dominio, describir su propósito y función.
+### Modelos
+Los modelos son objetos que representan entidades en el dominio del problema. Por ejemplo, un modelo para una página de eventos de computación podría ser un evento. Un evento tendría propiedades como el nombre, la fecha, la hora y la ubicación del evento.
+```js
+// Este es el modelo `Event`.
+interface Event {
+  name: string;
+  date: Date;
+  time: Date;
+  location: string;
+}
+```
+### Repositorios
+Los repositorios son responsables del acceso a los datos. Un repositorio para una página de eventos de computación podría ser un repositorio de eventos. Un repositorio de eventos sería responsable de acceder a los eventos de la base de datos.
+```js
+// Este es el repositorio `EventRepository`.
+class EventRepository {
+  constructor(private readonly pocketBaseClient: PocketBaseClient) {}
 
-### Agregados y Módulos:
-Detallar cómo se definieron los agregados (grupos lógicos de entidades y objetos de valor) y cómo se organizaron en módulos en el sistema.
+  async fetchEvents() {
+    const events = await this.pocketBaseClient.query('events');
+    return events;
+  }
 
-### Fábricas y Repositorios:
-Describir cómo se utilizan las fábricas para crear objetos complejos y los repositorios para gestionar el acceso a la persistencia de datos.
+//CRUD
+}
+```
+### Servicios
+Los servicios son responsables de realizar operaciones en los datos. Un servicio para una página de eventos de computación podría ser un servicio de eventos. Un servicio de eventos sería responsable de crear, actualizar y eliminar eventos.
+```js
+// Este es el servicio `EventService`.
+class EventService {
+  constructor(private readonly eventRepository: EventRepository) {}
 
-## "Arquitectura en Capas"
+  async createEvent(event: Event) {
+    return await this.eventRepository.createEvent(event);
+  }
+
+  async updateEvent(event: Event) {
+    return await this.eventRepository.updateEvent(event);
+  }
+
+  async deleteEvent(eventId: number) {
+    return await this.eventRepository.deleteEvent(eventId);
+  }
+}
+```
+### Vistas
+Las vistas son responsables de mostrar los datos al usuario. Una vista para una página de eventos de computación podría ser una vista de lista de eventos. Una vista de lista de eventos sería responsable de mostrar una lista de eventos al usuario.
+```svelte
+ <div id = "contenedorC">
+    <section>
+      <h2>Eventos Próximos</h2>
+      <form id="search-form">
+        <label for="search-input">Buscar por nombre:</label>
+        <input type="text" bind:value={search_text} on:input={searchBooks} />
+        <button type="submit">Buscar</button>
+      </form>
+      <div id="event-list">
+        {#each eventos as evento}
+          <div id="eventoInvidual">
+                <h3>
+                  {evento.titulo}
+                  {//Datos de evento}
+                </h3>
+          </div>
+        {/each}
+      </div>
+    </section>
+```
+
+### "Arquitectura en Capas"
 El sistema sigue un enfoque de arquitectura en capas para garantizar la separación de preocupaciones y la modularidad. Las capas principales del sistema son:
 
 **Capa de Presentación:**

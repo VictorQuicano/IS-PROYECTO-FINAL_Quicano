@@ -61,10 +61,10 @@ Se proporciona un enlace al prototipo interactivo de la interfaz de usuario [aqu
 
 ## Modelo de Dominio
 ### Diagrama de Clases:
-Presentar un diagrama que ilustre las clases y sus relaciones en el sistema, como "Evento", "Usuario", "Comentario", etc.
+![Diagrama](docs/image_2023-08-11_093645799.png)
 
 ### Diagrama de Módulos:
-Desglosar el sistema en módulos funcionales, mostrando cómo se organiza la arquitectura. Esto puede incluir módulos como "Gestión de Eventos", "Autenticación de Usuarios", etc.
+![Diagrama](docs/image_2023-08-11_093626090.png)
 
 ## Arquitectura y Patrones
 ### Diagrama de Componentes o Paquetes:

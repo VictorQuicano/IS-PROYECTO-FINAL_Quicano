@@ -1,6 +1,6 @@
 # Sistema de Publicación de Eventos Relacionados a Computación
 
-![Eventos CS](docs/eventos-cs.png)
+![Eventos CS](docs/image_2023-08-11_102553576.png)
 [Live demo](https://eventos-cs.netlify.app)
 
 ## Descripción

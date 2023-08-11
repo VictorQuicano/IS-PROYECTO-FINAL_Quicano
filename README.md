@@ -132,7 +132,7 @@ const formData = Object.fromEntries([...(await request.formData())]);
       throw error(err.status, err.message);
     }
 ```
-> En caso se genere un evento y este ya existe o tiene algun error al pasarlo a la BD se muestra error al usuario, pero le permite continuar en el sistema'
+> En caso se genera un evento y si este ya existe o tiene algun error al pasarlo a la BD se muestra error al usuario, pero le permite continuar en el sistema'
 
 ## Principios SOLID
 ### Descripción:
@@ -200,9 +200,31 @@ export async function handle({ event, resolve }) {
   /////
 }
 ```
+## CONVENCCIONES DE CÓDIGO
+# Nombres descriptivo
+```js
+<script>
+  import { getURLImagen } from '$lib/utils';
+  export let data;
+  // console.log(data);
+  function inicialesUsuario(nombre, apellido) {
+  return nombre.substring(0, 1)+apellido.substring(0, 1); }
+
+</script>
+
+<head>
+  <title>Eventos - CS</title>
+```
+# Estilo de Nombrado (CAMELCASE)
+Las variables, funciones,etc, cuando superan 2 palabras la siguiente empieza en mayuscula
+```js
+<img src={data.event?.imagen? getURLImagen(data.event.collectionId, data.event.id, data.event.imagen, '80x80')
+					: `https://via.placeholder.com/80/4506CB/FFFFFF/?text=${data.event.titulo}`} alt="Imagen del Evento" />
+```
 ## Conceptos DDD (Domain-Driven Design)
 ### Modelos
 Los modelos son objetos que representan entidades en el dominio del problema. Por ejemplo, un modelo para una página de eventos de computación podría ser un evento. Un evento tendría propiedades como el nombre, la fecha, la hora y la ubicación del evento.
+
 ```js
 // Este es el modelo `Event`.
 interface Event {
